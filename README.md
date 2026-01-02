@@ -1,76 +1,130 @@
-Este é um nó da comunidade n8n que permite interagir com o Microsoft Planner em seus fluxos de trabalho do n8n.
+n8n-nodes-microsoft-planner
 
-O n8n
- é uma plataforma de automação de workflows com licença fair-code
-.
 
-O Microsoft Planner
- é uma ferramenta de gerenciamento de tarefas que ajuda equipes a organizar, atribuir e colaborar em atividades.
+
+
+
+
+
+
+🚀 Nó da comunidade n8n para integração completa com o Microsoft Planner, permitindo criar, gerenciar e automatizar tarefas diretamente nos seus workflows.
+
+📌 Visão Geral
+
+Este pacote adiciona um nó do Microsoft Planner ao n8n
+, permitindo:
+
+Criar e gerenciar tarefas
+
+Atribuir usuários por e-mail
+
+Trabalhar com buckets e planos
+
+Recuperar arquivos anexados às tarefas
+
+Executar operações CRUD completas
+
+🔗 Tecnologias
+
+Plataforma: n8n (workflow automation)
+
+API: Microsoft Graph (Planner)
+
+Autenticação: OAuth2
+
+📚 Índice
 
 Instalação
 
-Siga o guia de instalação
- da documentação de nós da comunidade do n8n.
-
-Nó da Comunidade
-
-Vá para Settings > Community Nodes na sua instância do n8n
-
-Selecione Install
-
-Digite @blickwerk/n8n-nodes-microsoft-planner em Enter npm package name
-
-Aceite os riscos
- de usar nós da comunidade
-
-Selecione Install
-
-Após a instalação, você poderá usar o nó como qualquer outro em seus workflows.
-
-Instalação Manual
-
-Para instalar manualmente:
-
-npm install @blickwerk/n8n-nodes-microsoft-planner
-
 Pré-requisitos
 
-Você precisa ter:
+Configuração no Azure AD
 
-Uma assinatura ativa do Microsoft 365
+Credenciais no n8n
 
-Um plano criado no Microsoft Planner
+Funcionalidades
 
-Um App registrado no Azure AD com as seguintes permissões de API:
+Operações Disponíveis
 
-Tasks.ReadWrite – Ler e gravar tarefas
+Exemplos de Uso
 
-Group.ReadWrite.All – Ler e gravar todos os grupos (necessário para o Planner)
+Compatibilidade
 
-User.Read.All – Ler todos os usuários (necessário para atribuição de tarefas por e-mail)
+Histórico de Versões
 
-Configurando o App no Azure AD
+Licença
+
+Autor
+
+Suporte
+
+📦 Instalação
+🔹 Instalação via Community Nodes (Recomendado)
+
+Acesse Settings > Community Nodes no n8n
+
+Clique em Install
+
+Informe:
+
+@blickwerk/n8n-nodes-microsoft-planner
+
+
+Aceite os riscos dos nós da comunidade
+
+Finalize clicando em Install
+
+✅ Após a instalação, o nó estará disponível como qualquer outro no editor de workflows.
+
+🔹 Instalação Manual
+npm install @blickwerk/n8n-nodes-microsoft-planner
+
+
+⚠️ Importante: Reinicie o n8n após a instalação manual.
+
+🔐 Pré-requisitos
+
+Antes de começar, você precisa de:
+
+✔️ Assinatura ativa do Microsoft 365
+
+✔️ Um plano criado no Microsoft Planner
+
+✔️ Um App registrado no Azure AD com as permissões corretas
+
+Permissões obrigatórias da API
+Permissão	Descrição
+Tasks.ReadWrite	Criar e editar tarefas
+Group.ReadWrite.All	Acesso aos grupos (obrigatório para Planner)
+User.Read.All	Buscar usuários para atribuição por e-mail
+
+💡 Dica: Sem User.Read.All, a atribuição de tarefas por e-mail não funcionará.
+
+☁️ Configuração no Azure AD
+🧩 Criar App Registration
 
 Acesse o Azure Portal
 
-Navegue até Azure Active Directory > App registrations
+Vá em Azure Active Directory > App registrations
 
 Clique em New registration
 
-Dê um nome ao app (ex.: n8n Microsoft Planner Integration)
+Nome sugerido: n8n Microsoft Planner Integration
 
-Selecione Accounts in this organizational directory only
+Tipo de conta:
 
-Adicione a Redirect URI:
+Accounts in this organizational directory only
 
-https://sua-instancia-n8n.com/rest/oauth2-credential/callback
+Redirect URI:
+
+https://SUA-INSTANCIA-N8N/rest/oauth2-credential/callback
 
 
 Clique em Register
 
-Configurar Permissões de API
+🔑 Configurar Permissões de API
 
-Vá até API permissions
+Acesse API permissions
 
 Clique em Add a permission
 
@@ -78,230 +132,150 @@ Selecione Microsoft Graph
 
 Escolha Delegated permissions
 
-Adicione as seguintes permissões:
+Adicione:
 
-Tasks.ReadWrite – Ler e gravar tarefas
+Tasks.ReadWrite
 
-Group.ReadWrite.All – Ler e gravar todos os grupos
+Group.ReadWrite.All
 
-User.Read.All – Ler perfis básicos de todos os usuários
+User.Read.All
 
 Clique em Grant admin consent
 
-Nota: A permissão User.Read.All é obrigatória se você quiser atribuir tarefas usando o e-mail dos usuários.
+🚨 Atenção: Sem o consentimento do administrador, o nó não funcionará corretamente.
 
-Criar Client Secret
+🔒 Criar Client Secret
 
 Vá em Certificates & secrets
 
 Clique em New client secret
 
-Adicione uma descrição e escolha o prazo de expiração
+Defina descrição e validade
 
-Copie o Value (ele não será exibido novamente)
+Copie o Value imediatamente
 
-Obter Detalhes da Aplicação
+❗ O valor do secret não pode ser recuperado depois.
 
-Client ID: disponível na página de visão geral do app
+🔑 Credenciais no n8n
 
-Client Secret: valor copiado no passo anterior
+Vá em Credentials > New
 
-Credenciais no n8n
+Busque por Microsoft Planner OAuth2 API
 
-Configure as credenciais OAuth2 do Microsoft Planner no n8n:
+Preencha:
 
-No n8n, vá para Credentials > New
+Client ID
 
-Procure por Microsoft Planner OAuth2 API
-
-Informe o Client ID e o Client Secret
+Client Secret
 
 Clique em Connect my account
 
-Conclua o fluxo de autenticação OAuth
+Complete o fluxo OAuth2
 
-Funcionalidades
+✅ Pronto! Suas credenciais estão configuradas.
 
-Interface de Localização de Recursos: escolha entre From List (lista suspensa) ou By ID (entrada manual) para Buckets
+✨ Funcionalidades
 
-Atribuição de Usuários: atribua tarefas usando e-mails
+🧭 Resource Locator UI
 
-Gerenciamento de Prioridade: seletor simples (Urgente, Importante, Médio, Baixo)
+Seleção via lista ou ID manual
 
-Operações CRUD completas: Criar, Ler, Atualizar e Excluir tarefas
+👤 Atribuição de usuários por e-mail
 
-Operações
-Tarefa (Task)
+🚦 Controle de prioridade
 
-Create – Criar uma nova tarefa
+Urgente | Importante | Médio | Baixo
 
-Get – Buscar uma tarefa pelo ID
+🗂️ Gerenciamento de Buckets
 
-Get Many – Buscar múltiplas tarefas de um plano ou bucket
+📎 Recuperação de arquivos anexados
 
-Update – Atualizar uma tarefa existente
+🔄 CRUD completo de tarefas
 
-Delete – Excluir uma tarefa
-
-Get Files – Obter todos os arquivos anexados a uma tarefa
-
-Uso
+🔧 Operações Disponíveis
+📝 Tarefas (Task)
+Operação	Descrição
+Create	Criar nova tarefa
+Get	Buscar tarefa por ID
+Get Many	Buscar várias tarefas
+Update	Atualizar tarefa
+Delete	Excluir tarefa
+Get Files	Listar arquivos anexados
+🚀 Exemplos de Uso
 Criar uma Tarefa
 
-Informe o Plan ID (disponível na URL do Planner ou via Graph Explorer)
+Campos obrigatórios
 
-Selecione um Bucket no dropdown (carregado automaticamente com base no Plan ID)
+Plan ID
 
-Informe o Title da tarefa
+Bucket
 
-Campos opcionais:
+Title
 
-Description – Descrição detalhada
-
-Priority – Prioridade da tarefa:
-
-Urgente (mais alta)
-
-Importante
-
-Médio (padrão)
-
-Baixo
-
-Assigned To – Lista de e-mails separados por vírgula
-
-user1@dominio.com, user2@dominio.com
-
-
-Due Date Time – Data/hora de conclusão
-
-Start Date Time – Data/hora de início
-
-Percent Complete – Percentual de conclusão (0–100)
-
-Obter Tarefas
-
-Buscar uma única tarefa:
-
-Informe manualmente o Task ID
-
-Buscar várias tarefas:
-
-Escolha o tipo de filtro: Plan ou Bucket
-
-Informe o Plan ID
-
-Se filtrar por Bucket, selecione na lista ou informe o ID manualmente
-
-Defina um limite ou retorne todas as tarefas
-
-Atualizar uma Tarefa
-
-Informe o Task ID
-
-Atualize qualquer um dos campos:
-
-Título
+Campos opcionais
 
 Descrição
 
 Prioridade
 
-Usuários atribuídos
+Usuários (por e-mail)
 
 Datas de início e término
 
 Percentual de conclusão
 
-Mover para outro bucket
+📧 Exemplo de usuários:
 
-Obter Arquivos de uma Tarefa
+usuario1@empresa.com, usuario2@empresa.com
 
-Informe o Task ID
+📎 Obter Arquivos de uma Tarefa
 
-A operação retorna:
+Retorno da operação:
 
-taskId – ID da tarefa
+taskId
 
-fileCount – Número de arquivos anexados
+fileCount
 
-files – Lista de arquivos contendo:
+files[]
 
-url – URL do SharePoint decodificada
+URL decodificada do SharePoint
 
-alias – Nome exibido
+Nome do arquivo
 
-type – Tipo do arquivo (PowerPoint, Word, Excel, PDF, Outros)
+Tipo
 
-previewPriority – Prioridade de visualização
+Última modificação
 
-lastModifiedDateTime – Última modificação
+🧩 Compatibilidade
 
-lastModifiedBy – Quem modificou
+✔️ Testado com n8n 1.0.0 ou superior
 
-Como Encontrar o Plan ID
-Pela URL do Planner
-https://tasks.office.com/.../planId=SEU_PLAN_ID/...
+🗂️ Histórico de Versões
 
-Pelo Microsoft Graph Explorer
+📌 Histórico completo mantido conforme versão original do pacote.
 
-Acesse https://developer.microsoft.com/graph/graph-explorer
+📄 Licença
 
-Faça login
+Distribuído sob licença MIT
+Veja o arquivo LICENSE
 
-Execute:
-
-GET /me/planner/plans
-
-
-Copie o campo id do plano desejado
-
-Resource Locator (From List / By ID)
-
-From List – Seleção via dropdown (carregada automaticamente)
-
-By ID – Entrada manual do ID
-
-Para operações Get / Update / Delete, o Task ID deve ser informado manualmente.
-
-Compatibilidade
-
-Testado com n8n versão 1.0.0 ou superior.
-
-Recursos
-
-Documentação de nós da comunidade n8n
-
-Documentação da API do Microsoft Graph Planner
-
-Microsoft Graph Explorer
-
-Histórico de Versões
-
-(Conteúdo mantido, apenas traduzido)
-
-
-Licença
-
-MIT
-
-Autor
+👨‍💻 Autor
 
 Desenvolvido por Blickwerk Media UG
 
-Sobre a Blickwerk Media
+🌍 Sobre a Blickwerk Media
 
-Somos uma agência digital sediada na Alemanha, especializada em automação, design e soluções web para diversos setores.
+Agência digital sediada na Alemanha, especializada em automação, design e soluções web.
 
-Nosso foco é criar workflows eficientes, experiências de marca fortes e contribuições open-source que conectem melhor as ferramentas digitais.
+🌐 https://blickwerk.media
 
-Site: https://blickwerk.media
+💼 https://linkedin.com/company/blickwerkmedia
 
-LinkedIn: https://linkedin.com/company/blickwerkmedia
+📸 https://instagram.com/blickwerk.media
 
-Instagram: https://instagram.com/blickwerk.media
+🆘 Suporte
 
-Suporte
+💬 Dúvidas, problemas ou contribuições?
+Acesse o repositório no GitHub:
 
-Para problemas, dúvidas ou contribuições, visite o repositório no GitHub
-.
+👉 https://github.com/blickwerk/n8n-nodes-microsoft-planner
