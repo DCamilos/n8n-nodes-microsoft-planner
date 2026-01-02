@@ -35,7 +35,7 @@ export class MicrosoftPlannerOAuth2Api implements ICredentialType {
 			displayName: 'Scope',
 			name: 'scope',
 			type: 'hidden',
-			default: 'openid offline_access Tasks.ReadWrite Group.ReadWrite.All',
+			default: 'openid offline_access https://graph.microsoft.com/Tasks.ReadWrite https://graph.microsoft.com/Group.ReadWrite.All'
 		},
 		{
 			displayName: 'Auth URI Query Parameters',
@@ -72,7 +72,7 @@ export class MicrosoftPlannerOAuth2Api implements ICredentialType {
 		type: 'generic',
 		properties: {
 			headers: {
-				Authorization: '={{$credentials.tokenType}} {{$credentials.accessToken}}',
+				Authorization: '=Bearer {{$credentials.accessToken}}',
 			},
 		},
 	};
