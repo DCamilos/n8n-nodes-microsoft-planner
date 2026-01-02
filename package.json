@@ -10,14 +10,12 @@
     "tasks"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/blickwerk/n8n-nodes-microsoft-planner",
   "author": {
     "name": "Blickwerk Media UG",
     "email": "info@blickwerk.media"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/blickwerk/n8n-nodes-microsoft-planner.git"
+    "type": "git"
   },
   "main": "index.js",
   "scripts": {
